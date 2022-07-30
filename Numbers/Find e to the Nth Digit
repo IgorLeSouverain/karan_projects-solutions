@@ -8,12 +8,20 @@ def e_number(digits, times):
     e = 2.718281828459
     i = 1
 
-    with localcontext() as ctx:
-        ctx.prec = digits
+    if digits >= 7:
+        with localcontext() as ctx:
+            ctx.prec = digits
 
+            while num < e:
+                num = (1 + (1 / Decimal(i))) ** i
+                print(f"\u001b[1m#{i}\u001b[0m, {num}")
+                i += 1
+                if i == times + 1:
+                    break
+    else:
         while num < e:
-            num = (1 + (1 / Decimal(i))) ** i
-            print(f"\u001b[1m#{i}\u001b[0m, {num}")
+            num = (1 + (1 / i)) ** i
+            print(f"\u001b[1m#{i}\u001b[0m, {round(num, digits)}")
             i += 1
             if i == times + 1:
                 break
