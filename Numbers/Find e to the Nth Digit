@@ -1,3 +1,5 @@
+#Yo
+
 from decimal import Decimal, localcontext
 
 
@@ -11,7 +13,7 @@ def e_number(digits, times):
 
         while num < e:
             num = (1 + (1 / Decimal(i))) ** i
-            print(f"\u001b[1m {i}\u001b[0m, {num}")
+            print(f"\u001b[1m#{i}\u001b[0m, {num}")
             i += 1
             if i == times + 1:
                 break
@@ -24,18 +26,18 @@ while True:
 
     # Entering digits
     while True:
-        digits = input("Now set a limit to how many digits you want to see\nThe number should be under a\u001b[1m 1001\u001b[0m\n")
+        digits = input("Now set a limit to how many digits you want to see\nThe number should be under a\u001b[1m 1001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
         try:
-            if 0 <= int(digits) <= 1000:
+            if 0 < int(digits) <= 1000:
                 break
         except ValueError:
             continue
 
     # Entering times
     while True:
-        times = input("All right, now how many times do you want the program to calculate?\nThis should also be under a\u001b[1m 1001\u001b[0m :)\n")
+        times = input("All right, now how many times do you want the program to calculate?\nThis should also be under a\u001b[1m 1001\u001b[0m and more than\u001b[1m 0 \u001b[0m :)\n")
         try:
-            if 0 <= int(times) <= 1000:
+            if 0 < int(times) <= 1000:
                 break
         except ValueError:
             continue
