@@ -16,7 +16,7 @@ print("Hi, this program calculates N number of digits of pi value, just enter ho
 while True:
 
     while True:
-        x_digits = input("The number should be under\u001b[1m 1000001 \u001b[0mand more than\u001b[1m 0 \u001b[0m\n")
+        x_digits = input("The number should be under\u001b[1m 1000001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
         try:
             if 0 < int(x_digits) <= 1000000:
                 break
