@@ -8,6 +8,7 @@ def e_number(digits, times):
     e = 2.718281828459
     i = 1
 
+    # If digits >=7 we use localcontext else round, otherwise we get false calculations
     if digits >= 7:
         with localcontext() as ctx:
             ctx.prec = digits
