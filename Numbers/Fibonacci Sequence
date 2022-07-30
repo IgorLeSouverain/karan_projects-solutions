@@ -1,0 +1,80 @@
+#Yo
+
+import math
+from decimal import Decimal, localcontext
+
+while True:
+    # Choosing a sequence of numbers(1) or a single number(2)
+    while True:
+        fib_input = input("If you want to see a sequence of numbers to your number press\u001b[1m 1 \u001b[0m\n"
+                          "If you just want to see the Nth number press\u001b[1m 2 \u001b[0m\n")
+        if fib_input == "1" or fib_input == "2":
+            break
+
+    # fib_input == 1
+    if fib_input == "1":
+        while True:
+            number_fib = input("Enter your number under 1001: ")
+            try:
+                if 0 <= int(number_fib) <= 1000:
+                    break
+            except ValueError:
+                continue
+
+    # fib_input == 2
+    else:
+        while True:
+            number_fib = input("Enter your number under 1000001: ")
+            try:
+                if 0 <= int(number_fib) <= 1000000:
+                    break
+            except ValueError:
+                continue
+
+    # Sequence of numbers
+    if fib_input == "1":
+        if number_fib == "0":
+            print(0)
+        if number_fib == "1":
+            print(0, 1)
+        else:
+            a = 0
+            b = 1
+            for i in range(int(number_fib)):
+                print(a, end=' ')
+                a, b = b + a, a
+
+    # Single number
+    if fib_input == "2":
+        number_fib = int(number_fib)
+        phi = (1 + math.sqrt(5)) / 2
+        with localcontext() as ctx:
+            ctx.prec = 250000  # Maximum digits
+            print(round(Decimal(phi) ** Decimal(number_fib) / Decimal(math.sqrt(5)) + Decimal(0.5)))
+
+    while True:
+        try_again = input("\nTry again? y/n: ")
+        if try_again == "y":
+            break
+        elif try_again == "n":
+            exit()
+        else:
+            continue
+
+    continue
+    # Single number
+    if fib_input == "2":
+        number_fib = int(number_fib)
+        phi = (1 + math.sqrt(5)) / 2
+        print(int(phi ** number_fib / math.sqrt(5) + 0.5))
+
+    while True:
+        try_again = input("\nTry again? y/n: ")
+        if try_again == "y":
+            break
+        elif try_again == "n":
+            exit()
+        else:
+            continue
+
+    continue
