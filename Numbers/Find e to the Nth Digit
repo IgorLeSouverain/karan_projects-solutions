@@ -1,57 +1,56 @@
 #Yo
 
+import math
 from decimal import Decimal, localcontext
 
-
-def e_number(digits, times):
-    num = 1
-    e = 2.718281828459
-    i = 1
-
-    # If digits >=7 we use localcontext else round, otherwise we get false calculations
-    if digits >= 7:
-        with localcontext() as ctx:
-            ctx.prec = digits
-
-            while num < e:
-                num = (1 + (1 / Decimal(i))) ** i
-                print(f"\u001b[1m#{i}\u001b[0m, {num}")
-                i += 1
-                if i == times + 1:
-                    break
-    else:
-        while num < e:
-            num = (1 + (1 / i)) ** i
-            print(f"\u001b[1m#{i}\u001b[0m, {round(num, digits)}")
-            i += 1
-            if i == times + 1:
-                break
-
-
-print("Hi, this program calculates Euler's number\n\n"
-      "You can set a limit to how many digits you want to see in Euler's number as well as how many times you want to repeat calculation\n")
-
 while True:
-
-    # Entering digits
+    # Choosing a sequence of numbers(1) or a single number(2)
     while True:
-        digits = input("Now set a limit to how many digits you want to see\nThe number should be natural and under a\u001b[1m 1001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
-        try:
-            if 0 < int(digits) <= 1000:
-                break
-        except ValueError:
-            continue
+        fib_input = input("If you want to see a sequence of numbers to your number press\u001b[1m 1 \u001b[0m\n"
+                          "If you just want to see the Nth number press\u001b[1m 2 \u001b[0m\n")
+        if fib_input == "1" or fib_input == "2":
+            break
 
-    # Entering times
-    while True:
-        times = input("All right, now how many times do you want the program to calculate?\nThis should also be under a\u001b[1m 1001\u001b[0m and more than\u001b[1m 0 \u001b[0m :)\n")
-        try:
-            if 0 < int(times) <= 1000:
-                break
-        except ValueError:
-            continue
+    # fib_input == 1
+    if fib_input == "1":
+        while True:
+            number_fib = input("Enter a natural number under 1000: ")
+            try:
+                if 0 <= int(number_fib) < 1000:
+                    break
+            except ValueError:
+                continue
 
-    e_number(int(digits), int(times))
+    # fib_input == 2
+    else:
+        while True:
+            number_fib = input("Enter a natural number under 1000001: ")
+            try:
+                if 0 <= int(number_fib) <= 1000000:
+                    break
+            except ValueError:
+                continue
+
+    # Sequence of numbers
+    if fib_input == "1":
+        if number_fib == "0":
+            print(0)
+        if number_fib == "1":
+            print(0, 1)
+        else:
+            a = 0
+            b = 1
+            for i in range(int(number_fib)):
+                print(a, end=' ')
+                a, b = b + a, a
+
+    # Single number
+    if fib_input == "2":
+        number_fib = int(number_fib)
+        phi = (1 + math.sqrt(5)) / 2
+        with localcontext() as ctx:
+            ctx.prec = 250000  # Maximum digits
+            print(round(Decimal(phi) ** Decimal(number_fib) / Decimal(math.sqrt(5)) + Decimal(0.5)))
 
     while True:
         try_again = input("\nTry again? y/n: ")
