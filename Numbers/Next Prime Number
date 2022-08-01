@@ -1,0 +1,29 @@
+#Yo
+
+import sympy
+
+print("Hi, this program shows prime numbers one by one until you say No and program stops")
+print("Also, you can type any natural number under 101 and equal to 0 to see an N number of results\n")
+
+
+n = 0
+prime_numbers = []
+while True:
+    choice = input("Show the next number? y/n or a number: ")
+    if choice == "y":
+        n += 1
+        prime_numbers.append(sympy.prime(n))
+        print(prime_numbers)
+    elif choice == "n":
+        exit()
+    elif choice.isnumeric() and 100 >= int(choice) >= 0:
+        times = int(choice)
+        i = 0
+        while i != times:
+            n += 1
+            prime_numbers.append(sympy.prime(n))
+            i += 1
+        print(prime_numbers)
+    else:
+        continue
+
