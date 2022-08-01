@@ -1,4 +1,4 @@
-#Yo
+# Yo
 
 from decimal import Decimal, localcontext
 
@@ -8,7 +8,8 @@ def pi(x_digits):
         ctx.prec = int(x_digits)  # 1000000 digits precision
         pi = Decimal(0)
         for k in range(350):
-            pi += (Decimal(4)/(Decimal(8)*k+1) - Decimal(2)/(Decimal(8)*k+4) - Decimal(1)/(Decimal(8)*k+5) - Decimal(1)/(Decimal(8)*k+6)) / Decimal(16)**k
+            pi += (Decimal(4) / (Decimal(8) * k + 1) - Decimal(2) / (Decimal(8) * k + 4) - Decimal(1) / (
+                        Decimal(8) * k + 5) - Decimal(1) / (Decimal(8) * k + 6)) / Decimal(16) ** k
     return pi
 
 
@@ -16,7 +17,7 @@ print("Hi, this program calculates N number of digits of pi value, just enter ho
 while True:
 
     while True:
-        x_digits = input("The number should be under\u001b[1m 1000001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
+        x_digits = input("The number should be natural and under\u001b[1m 1000001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
         try:
             if 0 < int(x_digits) <= 1000000:
                 break
@@ -34,4 +35,3 @@ while True:
         else:
             continue
 
-    
