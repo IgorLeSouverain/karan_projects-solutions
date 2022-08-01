@@ -35,7 +35,7 @@ while True:
 
     # Entering digits
     while True:
-        digits = input("Now set a limit to how many digits you want to see\nThe number should be under a\u001b[1m 1001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
+        digits = input("Now set a limit to how many digits you want to see\nThe number should be natural and under a\u001b[1m 1001\u001b[0m and more than\u001b[1m 0 \u001b[0m\n")
         try:
             if 0 < int(digits) <= 1000:
                 break
