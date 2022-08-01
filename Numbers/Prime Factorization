@@ -6,7 +6,7 @@ print("Otherwise if there are multiple numbers in the output, the number you ins
 
 while True:
 
-    print("Please insert a number lower than a trillion and more than 0 :)")
+    print("Please insert a natural number lower than a trillion and more than 0 :)")
 
     # Input a number
     while True:
