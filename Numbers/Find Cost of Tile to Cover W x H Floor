@@ -1,0 +1,77 @@
+# Yo
+from functools import reduce
+
+print("Hi this program calculates a total price for tiles taking a floor size as a foundation")
+print("Please write values in\u001b[1m NxN\u001b[0m format, where N - is a decimal or a natural number and x - is just the English letter")
+print("Also no number can be zero except for price\n")
+
+while True:
+
+    # Print everything again if tile is bigger than floor
+    while True:
+
+        # Asking for tile size NxN
+        while True:
+            try:
+                tile = input("Tile size NxN centimeters: ")
+                if len(tile.split("x")) == 1:
+                    continue
+                S_tile = float(reduce(lambda x, y: float(x) * float(y),
+                                      tile.replace(",", ".").split("x")))  # NxN centimeters becomes N² centimeters
+                if S_tile < 0:
+                    continue
+            except ValueError:
+                continue
+            else:
+                break
+
+        # Asking for floor size NxN or N²
+        while True:
+            try:
+                floor = input("Floor size NxN meters or just N (it will turn into N²): ")
+                if len(floor.split("x")) > 1:
+                    S_floor = float(reduce(lambda x, y: float(x) * float(y),
+                                           floor.replace(",", ".").split("x")))  # NxN meters becomes N² meters
+                else:
+                    S_floor = float(floor)
+                if S_floor < 0:
+                    continue
+            except ValueError:
+                continue
+            else:
+                break
+
+        # Checking if a tile bigger than floor
+        if S_tile / 10000 > S_floor:
+            print("A single tile can't be bigger than a floor size :)")
+            continue
+        else:
+            break
+
+    # Asking for a cost of a single tile
+    while True:
+        cost_of_tile = input("Cost of a single tile (any currency): ")
+        if cost_of_tile.isnumeric():
+            break
+        else:
+            continue
+    cost_of_tile = float(cost_of_tile)
+
+    # Checking division by Zero error
+    if (S_floor / (S_tile / 10000)) == 0:
+        print("No number can be zero except for price!\n")
+        continue
+
+    # Counting total cost
+    total_cost = round(S_floor / (S_tile / 10000) * cost_of_tile)
+    print(f"Total cost will be: {total_cost}")
+
+    while True:
+        try_again = input("\nTry again? y/n: ")
+        if try_again == "y":
+            break
+        elif try_again == "n":
+            exit()
+        else:
+            continue
+
