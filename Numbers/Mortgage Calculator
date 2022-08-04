@@ -1,5 +1,3 @@
-#Yo
-
 import math
 
 print("Hi, this is a mortgage calculator")
@@ -59,9 +57,13 @@ while True:
     # Asking for how long taking a mortgage
     while True:
         try:
-            years = input("For how many years are you taking the mortgage (from 1 year up to 30 years): \n")
+            max_years = 65 - age
+            if max_years > 30:
+                max_years = 30
+            print(f"You're {age} years old, so in your case you can only take mortgage maximum for {max_years} years")
+            years = input(f"For how many years are you taking the mortgage (from 1 year up to {max_years} years): \n")
             years = math.floor(float(years))
-            if 1 <= years <= 30:
+            if 1 <= years <= max_years:
                 break
             else:
                 continue
@@ -71,7 +73,7 @@ while True:
             break
 
     # Calculating annuity mortgage
-    def annuity(age_of_person, monthly_salary, sum_of_credit, years_to_cover_mortgage):
+    def annuity(monthly_salary, sum_of_credit, years_to_cover_mortgage):
 
         # Asking for mortgage rate
         while True:
@@ -102,10 +104,11 @@ while True:
 
         # Updating sum_of_credit based on initial fee
         if initial_fee_percent == 0:
-            print(f"That means minimum 0 off of your credit up to {sum_of_credit / 100 * 95}(95%) off of your credit")
+            initial_fee_percent = round(initial_fee_percent)
+            print(f"That means minimum initial fee is 0 off of your credit up to {round(sum_of_credit / 100 * 95)}(95%) off of your credit")
             while True:
                 try:
-                    initial_fee = input(f"So what sum of initial fee from {initial_fee_percent} to {sum_of_credit / 100 * 95} are you choosing?: ")
+                    initial_fee = input(f"So what sum of initial fee from {initial_fee_percent} to {round(sum_of_credit / 100 * 95)} are you choosing?: ")
                     initial_fee = float(initial_fee)
                     if initial_fee_percent <= initial_fee <= sum_of_credit / 100 * 95:
                         break
@@ -116,7 +119,8 @@ while True:
             sum_of_credit = sum_of_credit - initial_fee
         else:
             minimum_initial_fee = sum_of_credit / 100 * initial_fee_percent
-            print(f"That means minimum {minimum_initial_fee} off of your credit up to {sum_of_credit/100*95}(95%) off of your credit")
+            minimum_initial_fee = round(minimum_initial_fee)
+            print(f"That means minimum minimum initial fee is {minimum_initial_fee} off of your credit up to {sum_of_credit/100*95}(95%) off of your credit")
             while True:
                 try:
                     initial_fee = input(f"So what sum of initial fee from {minimum_initial_fee} to {sum_of_credit/100*95} are you choosing?: ")
@@ -129,15 +133,21 @@ while True:
                     continue
             sum_of_credit = sum_of_credit - initial_fee
 
-        print(sum_of_credit)
-        
         # Calculating the result
-        # Finish writing 'calculating the result' segment in annuity function
-        # Implement 'if' statement as for age of a person and his monthly income 
+        result = sum_of_credit*mortgage_rate/(1-(1+mortgage_rate)*(1-years_to_cover_mortgage*12))
+        result = round(result)
+
+        # Brokeass check
+        brokeass_check = monthly_salary / 100 * 40
+        if brokeass_check <= result:
+            print("\nSorry, you can't afford to pay 40% of off your monthly salary to cover mortgage, comeback when you're not a\u001b[1m brokeass\u001b[0m")
+        else:
+            print(f"\nThe monthly payment will be {result}, you're going to be covering the mortgage for {years_to_cover_mortgage} years,\u001b[1m best of luck!\u001b[0m")
+
         # Finish second variant of calculating mortgage (Linear)
 
     if choice_input == "1":
-        annuity(age, monthly_income, credit, years)
+        annuity(monthly_income, credit, years)
     else:
         pass
 
