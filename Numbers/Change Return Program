@@ -1,0 +1,30 @@
+#Yo
+
+print("Hi this program calculates change in dollars")
+print("Enter a price of an item and the amount of money given and it will calculate the change")
+
+cost_input = float(input("Price: "))
+sum_input = float(input("Money given: "))
+
+
+def count_change(cost, summ):
+    if cost > summ:
+        return "You don't have enough money to buy"
+    quarter = 0.25
+    dime    = 0.1
+    nickel  = 0.05
+    pennie  = 0.01
+    change = summ - cost
+    q = change // quarter
+    change = round(change - quarter * q, 3)
+    d = change // dime
+    change = round(change - dime * d, 3)
+    n = change // nickel
+    change = round(change - nickel * n, 3)
+    p = change // pennie
+    change = round(change - pennie * p, 3)
+
+    return f"The change is {int(q)} quarters {int(d)} dimes {int(n)} nickels and {int(p)} pennies"
+
+
+print(count_change(cost_input, sum_input))
