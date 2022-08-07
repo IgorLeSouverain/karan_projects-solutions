@@ -1,0 +1,42 @@
+# Yo
+
+def binary_to_decimal(x: str) -> float:
+    if "." in x:
+        x = x.split(".")
+        x1 = x[0]
+        result, n = 0, len(x1)-1
+        for i in x1:
+            if i == "1":
+                result += 2 ** n
+            n -= 1
+        x2 = x[1]
+        result1, n = 0, 1
+        for i in x2:
+            if i == "1":
+                result += 1 / (2 ** n)
+            n += 1
+        final_result = result1 + result
+        return final_result
+    else:
+        result, n = 0, len(x)-1
+        for i in x:
+            if i == "1":
+                result += 2 ** n
+            n -= 1
+        return result
+
+def decimal_to_binary(x: str) -> str:
+    if "." in x:
+        x = x.split(".")
+        x1 = "{:b}".format(int(x[0]))
+        print(x1)
+        x2 = x[1]
+        result, n = 0, 1
+    else:
+        x = "{:b}".format(int(x))
+        return x
+
+
+print("Hi this program converts binary numbers to decimal and visa versa\n")
+number_input = input("Enter a decimal or a natural number: ")
+print(binary_to_decimal(number_input))
